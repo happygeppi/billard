@@ -1,0 +1,88 @@
+Herleitung:
+
+Kollision sei als Kraftstoss zu betrachten:
+--> m * u = m * v + F * t
+
+Problem: Betrag von F unbekannt & t unbekannt
+Loesung: bekannt ist Einheitsvektor f = ( fx: cos a, fy: sin a ) mit a = arctan(deltaY / deltaX) als Winkel zwischen Mittelpunkten der Kugeln
+
+--> m * u = m * v + f * |F| * t
+--> m * u = m * v + f * r, wobei r = |F| * t
+
+Definitionen:
+  v...Geschwindigkeit vor Stoss
+  u...Geschwindigkeit vor Stoss
+  x1 = v1.x
+  y1 = v1.y
+  x2 = v2.x
+  y2 = v2.y
+  a1 = u1.x
+  b1 = u1.y
+  a2 = u2.x
+  b2 = u2.y
+  fx = cos a
+  fy = sin a
+
+Annahmen:
+  Energieerhaltungssatz:
+    m1 * v1**2 + m2 * v2**2 = m1 * u1**2 + m2 * u2**2
+
+    Da v**2 = v.x**2 + v.y**2 gilt, gilt auch
+    
+    m1 * (x1**2 + y1**2) + m2 * (x2**2 + y2**2) = m1 * (a1**2 + b1**2) + m2 * (a2**2 + b2**2)
+    0 = m1 * (x1**2 + y1**2) + m2 * (x2**2 + y2**2) - m1 * (a1**2 + b1**2) - m2 * (a2**2 + b2**2)
+
+  Kraftstoss-Ansatz von oben:
+    m1 * u1 = m1 * v1 + f * r
+    m2 * u2 = m2 * v2 - f * r
+    Die andere Kugel erfaehrt einen Kraftstoss mit gleichem Betrag in die andere Richtung.
+    Damit ist auch der Impulserhaltungssatz gewaehrt.
+
+    u1 = v1 + f * r / m1
+    u2 = v2 + f * r / m2
+
+    Zerlegung in Dimensionen:
+
+    a1 = x1 + fx * r / m1
+    b1 = y1 + fy * r / m1
+    a2 = x2 - fx * r / m2
+    b2 = y2 - fy * r / m2
+
+Loesen nach r:
+  EES:
+    0 = m1 * (x1**2 + y1**2) + m2 * (x2**2 + y2**2) - m1 * (a1**2 + b1**2) - m2 * (a2**2 + b2**2)
+    0 = m1 * (x1**2 - a1**2 + y1**2 - b1**2) + m2 * (x2**2 - a2**2 + y2**2 - b2**2)
+  
+  Einsetzen von a1,b1,a2,b2:
+    0 = m1 * (x1**2 - x1**2 - 2 * x1 * fx * r / m1 - fx**2 * r**2 / m1**2 + y1**2 - y1**2 - 2 * y1 * fy * r / m1 - fy**2 * r**2 / m1**2)
+      + m2 * (x2**2 - x2**2 + 2 * x2 * fx * r / m2 - fx**2 * r**2 / m2**2 + y2**2 - y2**2 + 2 * y2 * fy * r / m2 - fy**2 * r**2 / m2**2)
+
+  Kuerzen:
+    0 = -2 * x1 * fx * r - fx**2 + r**2 / m1 - 2 * y1 * fy * r - fy**2 + r**2 / m1
+      +  2 * x2 * fx * r - fx**2 + r**2 / m2 + 2 * y2 * fy * r - fy**2 + r**2 / m2
+
+  durch r dividieren & Ausklammern:
+    0 = 2 * (-x1 * fx + x2 * fx - y1 * fy + y2 * fy) - r * ((fx**2  + fy**2) / m1 + (fx**2 + fy**2) / m2)
+
+  Ausklammern & fx**2 + fy**2 = 1 = cos**2 + sin**2:
+    0 = 2 * (fx * (x2 - x1) + fy * (y2 - y1)) - r * (1 / m1 + 1 / m2)
+
+  r auf andere Seite & 1 / m1 + 1 / m2 = (m1 + m2) / (m1 * m2):
+    r * (m1 + m2) / (m1 * m2) = 2 * (fx * (x2 - x1) + fy * (y2 - y1))
+  
+  durch (m1 + m2) / (m1 * m2) dividieren:
+    r = (2 * m1 * m2 * (fx * (x2 - x1) + fy * (y2 - y1))) / (m1 + m2)
+
+Mit Wert von r lassen sich Geschwindigkeiten nach dem Stoss mit
+
+  a1 = x1 + fx * r / m1
+  b1 = y1 + fy * r / m1
+  a2 = x2 - fx * r / m2
+  b2 = y2 - fy * r / m2
+
+  u1.x = v1.x + cos(a) * r / m1
+  u1.y = v1.y + sin(a) * r / m1
+  u2.x = v2.x - cos(a) * r / m2
+  u1.y = v2.y - sin(a) * r / m2
+
+einfach berechnen.
